@@ -113,28 +113,41 @@ export default function ServiceCards() {
         }}
         onMouseLeave={handleLeave}
       >
-        {/* Ambient glow */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ overflow: 'visible' }}>
+        {/* Ambient glow (not masked, so it doesn't get clipped) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ overflow: 'visible', zIndex: 0 }}>
           <div className="w-[700px] h-[300px] bg-accent/[0.04] rounded-full blur-[120px]" />
         </div>
 
-        {/* Track */}
-        <div
-          ref={trackRef}
-          className="flex flex-nowrap items-end"
+        {/* Mask wrapper just for the cards, with large padding to prevent clipping shadows/tooltips */}
+        <div 
           style={{
-            gap: `${GAP}px`,
-            willChange: 'transform',
-            position: 'relative',
-            width: 'max-content',
-            overflow: 'visible',
+            paddingTop: '150px',
+            paddingBottom: '150px',
+            marginTop: '-150px',
+            marginBottom: '-150px',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+            zIndex: 1,
+            position: 'relative'
           }}
         >
+          {/* Track */}
+          <div
+            ref={trackRef}
+            className="flex flex-nowrap items-end"
+            style={{
+              gap: `${GAP}px`,
+              willChange: 'transform',
+              position: 'relative',
+              width: 'max-content',
+              overflow: 'visible',
+            }}
+          >
           {items.map((service, i) => {
             const s          = cardStyles[i] || { translateY: ARC_SIDE, scale: 0.92, rotate: 0, zIndex: 1 };
             const isHovered  = hoveredIndex === i;
-            const translateY = isHovered ? s.translateY - HOVER_LIFT : s.translateY;
-            const scale      = isHovered ? 1.12 : s.scale;
+            const translateY = s.translateY;
+            const scale      = s.scale;
             const rotate     = isHovered ? 0    : s.rotate;
             const zIdx       = isHovered ? 999  : s.zIndex;
 
@@ -165,6 +178,7 @@ export default function ServiceCards() {
               </div>
             );
           })}
+        </div>
         </div>
       </section>
     </div>

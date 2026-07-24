@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+
+
 /* ─── Brand Design Tokens (Light Theme) ─── */
 @theme {
   --color-accent: #D8FF00;
@@ -45,6 +47,37 @@
 
 .group:hover .marquee-strip {
   animation-play-state: paused;
+}
+
+/* ─── Global Layout Container System ─── */
+.site-container {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* 24px - Mobile */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 3rem; /* 48px - Tablet */
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 4rem; /* 64px - Desktop */
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-container {
+    padding-left: 5rem; /* 80px - Large Screens */
+    padding-right: 5rem;
+  }
 }
 
 /* ─── Base ─── */
@@ -167,3 +200,23 @@ body {
     linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
 }
+
+/* ─── Hero Section Top Padding ─── */
+@layer utilities {
+  .hero-top-padding {
+    padding-top: 140px !important;
+  }
+  @media (min-width: 640px) {
+    .hero-top-padding {
+      padding-top: 170px !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-top-padding {
+      padding-top: 200px !important;
+    }
+  }
+}
+
+
+

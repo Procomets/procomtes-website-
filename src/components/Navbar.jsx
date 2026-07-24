@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Button from './Button';
+import logoNav from '../assets/procomets logo full black & white.svg';
 
 const navLinks = [
-  { label: 'About Us', href: '#about' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Get in Touch', href: '/#contact' }
 ];
 
 export default function Navbar() {
@@ -25,46 +27,36 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-      className={[
-        'fixed top-0 left-0 right-0 z-50 flex justify-center',
-        'transition-all duration-500 ease-out',
-        scrolled
-          ? 'bg-bg-primary/80 backdrop-blur-xl'
-          : 'bg-transparent',
-      ].join(' ')}
+      className="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ease-out bg-transparent"
     >
-      <div className="w-full mx-auto px-[32px] lg:px-[48px]">
-        <div className="flex h-[72px] items-center justify-between">
+      <div 
+        className="w-full px-5 sm:px-8 md:px-[50px]" 
+        style={{ paddingLeft: "20px", paddingRight: "30px" }}
+      >
+        <div className="flex h-[72px] items-center justify-between w-full">
 
           {/* Left: Logo */}
-          <a href="/" className="flex items-center gap-2.5 group" id="nav-logo">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-black text-sm transition-transform duration-300 group-hover:scale-110">
-              P
-            </div>
-            <span className="text-text-primary font-semibold text-lg tracking-tight">
-              Procomets
-            </span>
-          </a>
+          <Link to="/" className="flex items-center shrink-0 group" id="nav-logo">
+            <img 
+              src={logoNav} 
+              alt="Procomets" 
+              style={{ height: "55px", width: "auto" }}
+              className="object-contain transition-transform duration-300 group-hover:scale-105" 
+            />
+          </Link>
 
           {/* Right: Nav Links + CTA Button */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                className="nav-link text-text-secondary text-sm font-medium tracking-wide"
+                to={link.href}
+                className="nav-link text-text-secondary text-sm font-medium tracking-wide hover:text-text-primary transition-colors"
                 id={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
-              className="text-sm font-medium px-5 py-2 rounded-full border border-text-secondary/30 text-text-primary hover:border-text-primary/60 transition-all duration-300"
-              id="nav-cta"
-            >
-              Get in Touch
-            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -93,29 +85,34 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg-primary border-b border-border-light overflow-hidden absolute top-[96px] left-0 right-0"
+            className="md:hidden overflow-hidden absolute left-0 right-0 shadow-2xl shadow-black/50"
+            style={{
+              top: '72px',
+              backgroundColor: 'rgba(6, 6, 9, 0.95)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
           >
-            <div className="flex flex-col px-[32px] py-4 gap-4">
-              {navLinks.map((link) => (
-                <a
+            <div style={{ display: 'flex', flexDirection: 'column', padding: '32px', gap: '16px' }}>
+              {navLinks.map((link, index) => (
+                <Link
                   key={link.label}
-                  href={link.href}
-                  className="text-text-secondary text-sm font-medium py-2 hover:text-text-primary transition-colors"
+                  to={link.href}
+                  className="text-white/80 font-medium hover:text-[#D8FF00] transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    display: 'block',
+                    paddingTop: '16px',
+                    paddingBottom: '8px',
+                    fontSize: '18px',
+                    textDecoration: 'none',
+                    borderBottom: index !== navLinks.length - 1 ? '1px solid rgba(255, 255, 255, 0.05)' : 'none'
+                  }}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <div className="pt-2">
-                <Button
-                  variant="primary"
-                  href="#contact"
-                  className="text-xs px-6 py-3 w-full"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Get in Touch
-                </Button>
-              </div>
             </div>
           </motion.div>
         )}

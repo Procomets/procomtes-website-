@@ -8,8 +8,6 @@ export default function Card({ title, image, index, rotation = 0, hoveredIndex, 
       style={{
         zIndex: isHovered ? 100 : 1,
         transform: `
-          translateY(${isHovered ? -25 : 0}px)
-          scale(${isHovered ? 1.08 : 1})
           rotate(${isHovered ? 0 : rotation}deg)
         `,
         opacity: isOtherHovered ? 0.8 : 1,
@@ -19,6 +17,40 @@ export default function Card({ title, image, index, rotation = 0, hoveredIndex, 
       onMouseEnter={() => onHover && onHover(index)}
       onMouseLeave={() => onLeave && onLeave()}
     >
+      {/* Tooltip Bubble (Outside overflow-hidden so it can pop out) */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-45px', /* Popping up above the card */
+          left: '50%',
+          transform: `translate(-50%, ${isHovered ? '0px' : '15px'}) scale(${isHovered ? 1 : 0.8})`,
+          backgroundColor: '#c8ff00ff',
+          color: 'black',
+          padding: '8px 18px',
+          borderRadius: '20px',
+          fontSize: '14px',
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+          opacity: isHovered ? 1 : 0,
+          pointerEvents: 'none',
+          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          zIndex: 110,
+          boxShadow: '0 10px 20px rgba(0,0,0,0.12)',
+        }}
+      >
+        {title}
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: '25%',
+            borderWidth: '6px',
+            borderStyle: 'solid',
+            borderColor: '#c8ff00ff transparent transparent transparent',
+          }}
+        />
+      </div>
+
       <div
         className={[
           'card-glow',
@@ -45,22 +77,7 @@ export default function Card({ title, image, index, rotation = 0, hoveredIndex, 
           draggable="false"
         />
 
-        {/* Hover Overlay with Service Name (Glassmorphism) */}
-        <div
-          className="absolute inset-x-0 bottom-0 px-4 py-3"
-          style={{
-            backgroundColor: 'rgba(15, 15, 15, 0.55)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            opacity: isHovered ? 1 : 0,
-            transform: `translateY(${isHovered ? 0 : 8}px)`,
-            transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
-          }}
-        >
-          <p className="text-text-white text-[13px] font-semibold tracking-wide leading-snug text-center">
-            {title}
-          </p>
-        </div>
+
 
         {/* Subtle accent glow border on hover */}
         <div

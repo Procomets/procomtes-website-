@@ -104,7 +104,7 @@ export default function TeamSection() {
         position: "relative"
       }}
     >
-      <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px" }}>
+      <div className="site-container">
 
         {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
@@ -216,8 +216,8 @@ export default function TeamSection() {
                 <span style={{
                   fontSize: "12px",
                   fontWeight: 700,
-                  letterSpacing: "0.18em",
-                  color: "#D8FF00",
+                  letterSpacing: "0.13em",
+                  color: "#646464ff",
                   textTransform: "uppercase",
                   display: "block",
                 }}>

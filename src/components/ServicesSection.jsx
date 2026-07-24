@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -63,18 +63,15 @@ export default function ServicesSection() {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".service-card");
-      if (cards.length < 2) return;
+      if (cards.length === 0) return;
 
-      // 001 is fixed at y: 0. 002-007 are pushed down below the wrapper completely.
-      gsap.set(cards[0], { yPercent: 0 });
-      gsap.set(cards.slice(1), { yPercent: 100 });
+      // All cards pushed down completely
+      gsap.set(cards, { yPercent: 100 });
 
       // ONE master timeline
       const tl = gsap.timeline();
 
-      for (let i = 1; i < cards.length; i++) {
-        // The incoming card moves up from 100% to 0%.
-        // Because of z-index, it overlays the previous card exactly like a drawer.
+      for (let i = 0; i < cards.length; i++) {
         tl.to(cards[i], {
           yPercent: 0,
           ease: "none",
@@ -82,12 +79,12 @@ export default function ServicesSection() {
         });
       }
 
-      // Pin the wrapper
+      // Pin the single wrapper
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         pin: true,
         start: "top top", // Pin exactly at the top of viewport
-        end: `+=${(cards.length - 1) * 100}%`, // Scroll distance equals number of incoming cards
+        end: `+=${cards.length * 100}%`, // Scroll distance equals number of incoming cards
         scrub: 1.5,
         animation: tl,
       });
@@ -98,66 +95,71 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section ref={containerRef} style={{ backgroundColor: "#ffffff" }}>
+    <section id="services" ref={containerRef} style={{ backgroundColor: "#ffffff", paddingTop: "40px" }}>
       {/* 
-        The pinned wrapper is EXACTLY 100vh tall.
-        It contains BOTH the header and the cards, so the header stays pinned 
-        and there is NO massive white void at the top of the screen.
+        Single Pinned Wrapper (100vh tall).
+        Contains BOTH the section header and the card deck container.
+        Inside each card, responsive CSS toggles between desktop 3-column layout and mobile card representation.
       */}
-      <div 
-        ref={wrapperRef} 
-        style={{ 
-          position: "relative", 
-          width: "100%", 
-          height: "100vh", // Full viewport height container
+      <div
+        ref={wrapperRef}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100dvh",
           overflow: "hidden",
           display: "flex",
           flexDirection: "column"
         }}
       >
-        {/* Pinned Section Header */}
-        <div style={{ flexShrink: 0, maxWidth: "1280px", margin: "0 auto", padding: "80px 24px 20px", width: "100%" }}>
-          <span style={{ fontSize: "12px", fontWeight: "600", letterSpacing: "0.15em", textTransform: "uppercase", color: "#b3d900", backgroundColor: "rgba(216,255,0,0.1)", padding: "6px 12px", borderRadius: "100px", display: "inline-block", marginBottom: "16px" }}>
-            Services
-          </span>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: "800", color: "#111", margin: 0, lineHeight: 1.1 }}>
-            Our Software Development Services
+        {/* Pinned Section Header - positioned absolutely behind the cards and centered */}
+        <div 
+          style={{ 
+            position: "absolute", 
+            top: 0, 
+            left: 0, 
+            width: "100%", 
+            height: "100%", 
+            zIndex: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <h2 style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontWeight: "900", color: "#111", margin: 0, lineHeight: 1.1, textAlign: "center", letterSpacing: "-0.02em" }}>
+            Our Services
           </h2>
         </div>
 
         {/* Cards Deck Container */}
-        <div style={{ flex: 1, position: "relative", width: "100%" }}>
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1 }}>
           {servicesData.map((service, index) => (
-            <div 
-              key={service.number}
-              className="service-card"
+            <div
+              key={index}
+              className="service-card bg-white"
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "100%", // Takes full height of the deck container
-                backgroundColor: "#ffffff",
-                zIndex: index + 1, // 002 overlays 001, 003 overlays 002, etc.
+                height: "100%",
+                zIndex: index + 1,
                 willChange: "transform"
               }}
             >
-              {/* Card Content Wrapper - Vertically centered beautifully */}
-              <div style={{ width: "100%", height: "100%", maxWidth: "1280px", margin: "0 auto", padding: "20px 24px 40px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                
+              {/* ─── DESKTOP VIEW CONTENT (md+ : 3-column layout) ─── */}
+              <div className="hidden md:flex site-container pt-2 pb-8 h-full flex-col justify-center">
+
                 {/* Card Header */}
-                <div style={{ paddingBottom: "20px", borderBottom: "1px solid #f0f0f0", marginBottom: "32px", display: "flex", alignItems: "baseline", gap: "16px" }}>
-                  <span style={{ fontSize: "14px", fontWeight: "700", letterSpacing: "0.15em", color: "#ccc" }}>
-                    {service.number}
-                  </span>
-                  <span style={{ fontSize: "2.2rem", fontWeight: "800", color: "#111" }}>
+                <div style={{ paddingBottom: "14px", borderBottom: "1px solid #f0f0f0", marginBottom: "24px", display: "flex", alignItems: "baseline", gap: "16px" }}>
+                  <span style={{ fontSize: "1.85rem", fontWeight: "800", color: "#111" }}>
                     {service.title}
                   </span>
                 </div>
 
                 {/* 3-Column Layout (30% / 45% / 25%) */}
                 <div style={{ display: "flex", gap: "4%", alignItems: "center" }}>
-                  
+
                   {/* 1. Image (30%, max 420px) */}
                   <div style={{ width: "30%", maxWidth: "420px", flexShrink: 0, borderRadius: "20px", overflow: "hidden", backgroundColor: "#f9f9f9", aspectRatio: "4/3", boxShadow: "0 10px 40px rgba(0,0,0,0.05)" }}>
                     <img src={service.image} alt={service.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
@@ -186,6 +188,56 @@ export default function ServicesSection() {
 
                 </div>
               </div>
+
+              {/* ─── MOBILE VIEW CONTENT (< md : Card representation) ─── */}
+              <div className="flex md:hidden h-full flex-col justify-center" style={{ padding: "16px 24px 48px 24px" }}>
+                <div 
+                  className="w-full bg-white rounded-[24px] border border-gray-200/90 shadow-[0_12px_40px_rgba(0,0,0,0.08)] flex flex-col relative"
+                  style={{ padding: "24px", gap: "16px" }}
+                >
+
+                  {/* 1. Service Title */}
+                  <div className="border-b border-gray-100 flex items-center justify-between" style={{ paddingBottom: "10px" }}>
+                    <h3 className="text-xl font-extrabold text-[#111] leading-tight" style={{ margin: 0 }}>
+                      {service.title}
+                    </h3>
+                    <span className="text-xs font-bold text-gray-400 shrink-0 ml-2">
+                      {service.number}
+                    </span>
+                  </div>
+
+                  {/* 2. Image of the Service */}
+                  <div className="w-full aspect-[16/10] rounded-xl overflow-hidden bg-gray-50 border border-gray-100 shrink-0">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* 3. Details Paragraph */}
+                  <p className="text-sm text-gray-600 leading-relaxed" style={{ margin: 0 }}>
+                    {service.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="border-t border-gray-100 mt-auto" style={{ paddingTop: "12px" }}>
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5" style={{ marginBottom: "6px" }}>
+                      Technologies
+                    </span>
+                    <div className="flex flex-wrap" style={{ gap: "6px" }}>
+                      {service.tags.map(tag => (
+                        <span key={tag} className="bg-gray-50 border border-gray-200/80 rounded-full text-[11px] font-medium text-gray-600" style={{ padding: "4px 10px" }}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
           ))}
         </div>

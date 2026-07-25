@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -35,9 +35,14 @@ export default function TestimonialsSection() {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
   const cardsRef = useRef([]);
+  const mobileScrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    let mm = gsap.matchMedia();
+
+    // Enable pinned ScrollTrigger ONLY on tablet and desktop (md and above: >= 768px)
+    mm.add("(min-width: 768px)", () => {
       const letters = gsap.utils.toArray(".test-letter");
       const cards = cardsRef.current.filter(Boolean);
 
@@ -96,19 +101,39 @@ export default function TestimonialsSection() {
 
       // Gentle overall float animation towards end of scroll
       tl.to(cards, { y: -15, ease: "none", duration: 0.4 }, 2.3);
+    });
 
-    }, containerRef);
-
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
+
+  const handleMobileScroll = () => {
+    if (!mobileScrollRef.current) return;
+    const container = mobileScrollRef.current;
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = container.scrollWidth / testimonials.length;
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
+      setActiveIndex(newIndex);
+    }
+  };
+
+  const scrollToCard = (idx) => {
+    if (!mobileScrollRef.current) return;
+    const container = mobileScrollRef.current;
+    const card = container.children[idx];
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  };
 
   const word = "TESTIMONIALS".split("");
 
   return (
     <section ref={containerRef} className="bg-white">
+      {/* ─── DESKTOP & TABLET VIEW (md and up: >= 768px) ─── */}
       <div 
         ref={wrapperRef} 
-        className="relative w-full min-h-[110vh] overflow-hidden flex items-center justify-center bg-white"
+        className="hidden md:flex relative w-full min-h-[110vh] overflow-hidden items-center justify-center bg-white"
         style={{ paddingTop: "80px", paddingBottom: "80px" }}
       >
         
@@ -158,7 +183,7 @@ export default function TestimonialsSection() {
               >
                 {/* Brand Primary Accent Quote Badge (#D8FF00) */}
                 <div 
-                  className="w-8 h-8 rounded-lg text-[#151515]   flex items-center justify-center shrink-0 "
+                  className="w-8 h-8 rounded-lg text-[#151515] flex items-center justify-center shrink-0"
                   style={{ marginBottom: "12px" }}
                 >
                   <svg width="15" height="13" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -203,6 +228,114 @@ export default function TestimonialsSection() {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* ─── MOBILE VIEW (< md breakpoint: < 768px) ─── */}
+      <div className="block md:hidden py-16 bg-white overflow-hidden border-t border-gray-100">
+        <div className="site-container text-center mb-8">
+          <h2 
+            style={{ 
+              fontSize: "36px", 
+              fontWeight: 800, 
+              color: "#111111", 
+              letterSpacing: "-0.03em",
+              margin: 0
+            }}
+          >
+            Testimonials
+          </h2>
+        </div>
+
+        {/* Horizontal Swipeable Carousel */}
+        <div 
+          ref={mobileScrollRef}
+          onScroll={handleMobileScroll}
+          className="cards-carousel flex gap-4 px-6 overflow-x-auto snap-x snap-mandatory"
+          style={{ 
+            scrollBehavior: "smooth",
+            WebkitOverflowScrolling: "touch",
+            paddingBottom: "12px"
+          }}
+        >
+          {testimonials.map((test, index) => (
+            <div 
+              key={index}
+              className="snap-center shrink-0 w-[85vw] rounded-[16px] shadow-md border border-black/5 flex flex-col justify-between"
+              style={{
+                backgroundColor: "#f4f5f7",
+                padding: "24px 20px",
+                minHeight: "260px"
+              }}
+            >
+              <div>
+                {/* Brand Primary Accent Quote Badge (#D8FF00) */}
+                <div 
+                  className="w-8 h-8 rounded-lg text-[#151515] flex items-center justify-center shrink-0"
+                  style={{ marginBottom: "16px" }}
+                >
+                  <svg width="15" height="13" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 24V14.4C0 6.4 4.8 1.6 12 0L13.6 3.2C8.8 4.4 6.4 7.2 6.4 11.2H12V24H0ZM16 24V14.4C16 6.4 20.8 1.6 28 0L29.6 3.2C24.8 4.4 22.4 7.2 22.4 11.2H28V24H16Z" fill="currentColor"/>
+                  </svg>
+                </div>
+
+                {/* Quote Text */}
+                <p 
+                  className="text-[#1a1a1a] font-semibold"
+                  style={{ fontSize: "15px", lineHeight: "1.6", marginBottom: "20px" }}
+                >
+                  "{test.quote}"
+                </p>
+              </div>
+
+              {/* Author Profile Footer */}
+              <div 
+                className="flex items-center"
+                style={{ gap: "12px", marginTop: "auto", paddingTop: "8px" }}
+              >
+                <img 
+                  src={test.avatar} 
+                  alt={test.name} 
+                  className="rounded-full object-cover shrink-0 border border-black/10" 
+                  style={{ width: "40px", height: "40px" }}
+                />
+                <div className="flex flex-col text-left">
+                  <h4 
+                    className="font-semibold text-[#111111] leading-snug"
+                    style={{ fontSize: "14.5px" }}
+                  >
+                    {test.name}
+                  </h4>
+                  <p 
+                    className="text-[#777777] font-normal"
+                    style={{ fontSize: "12px", marginTop: "2px" }}
+                  >
+                    {test.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Carousel Dots */}
+        <div className="flex justify-center items-center gap-2 mt-6">
+          {testimonials.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => scrollToCard(idx)}
+              aria-label={`Go to testimonial ${idx + 1}`}
+              className="transition-all duration-300 rounded-full"
+              style={{
+                width: activeIndex === idx ? "24px" : "8px",
+                height: "8px",
+                backgroundColor: activeIndex === idx ? "#111111" : "#D1D5DB",
+                border: "none",
+                padding: 0,
+                cursor: "pointer"
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>

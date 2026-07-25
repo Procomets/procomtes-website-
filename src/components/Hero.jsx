@@ -23,7 +23,7 @@ export default function Hero() {
       id="hero"
     >
       {/* ─── Content Container ─── */}
-      <div className="site-container flex flex-col items-center text-center">
+      <div className="site-container relative z-20 flex flex-col items-center text-center">
         <div className="w-full max-w-[860px] flex flex-col items-center text-center">
 
           {/* ─── H1 ─── */}

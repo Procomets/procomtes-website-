@@ -128,7 +128,8 @@ export default function ServiceCards() {
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
             maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
             zIndex: 1,
-            position: 'relative'
+            position: 'relative',
+            pointerEvents: 'none'
           }}
         >
           {/* Track */}
@@ -141,6 +142,7 @@ export default function ServiceCards() {
               position: 'relative',
               width: 'max-content',
               overflow: 'visible',
+              pointerEvents: 'auto'
             }}
           >
           {items.map((service, i) => {

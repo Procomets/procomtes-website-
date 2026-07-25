@@ -1,6 +1,7 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -374,25 +375,14 @@ export default function ContactSection() {
 
                 {/* Submit Button */}
                 <div ref={buttonRef} style={{ paddingTop: "8px" }}>
-                  <button 
+                  <Button 
+                    variant="shiny"
                     type="submit"
                     disabled={isSubmitting}
-                    style={{ 
-                      backgroundColor: "#D8FF00", 
-                      color: "#111111", 
-                      fontWeight: "600", 
-                      fontSize: "15px", 
-                      padding: "14px 36px", 
-                      borderRadius: "12px", 
-                      border: "none", 
-                      cursor: isSubmitting ? "not-allowed" : "pointer",
-                      display: "inline-block",
-                      transition: "all 0.2s ease"
-                    }}
-                    className="hover:bg-[#cbf000] active:scale-[0.98]"
+                    style={{ padding: "14px 44px" }}
                   >
                     {isSubmitting ? "Submitting..." : "Submit"}
-                  </button>
+                  </Button>
                 </div>
 
               </form>

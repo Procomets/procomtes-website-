@@ -232,8 +232,16 @@ export default function TestimonialsSection() {
       </div>
 
       {/* ─── MOBILE VIEW (< md breakpoint: < 768px) ─── */}
-      <div className="block md:hidden py-16 bg-white overflow-hidden border-t border-gray-100">
-        <div className="site-container text-center mb-8">
+      <div 
+        className="block md:hidden overflow-hidden" 
+        style={{ 
+          padding: "64px 0", 
+          backgroundColor: "#ffffff", 
+          borderTop: "1px solid #F3F4F6",
+          width: "100%" 
+        }}
+      >
+        <div style={{ padding: "0 20px", marginBottom: "32px", textAlign: "center" }}>
           <h2 
             style={{ 
               fontSize: "36px", 
@@ -251,28 +259,50 @@ export default function TestimonialsSection() {
         <div 
           ref={mobileScrollRef}
           onScroll={handleMobileScroll}
-          className="cards-carousel flex gap-4 px-6 overflow-x-auto snap-x snap-mandatory"
+          className="cards-carousel overflow-x-auto snap-x snap-mandatory"
           style={{ 
+            display: "flex",
+            gap: "16px",
+            padding: "0 24px 16px 24px",
             scrollBehavior: "smooth",
             WebkitOverflowScrolling: "touch",
-            paddingBottom: "12px"
+            width: "100%"
           }}
         >
           {testimonials.map((test, index) => (
             <div 
               key={index}
-              className="snap-center shrink-0 w-[85vw] rounded-[16px] shadow-md border border-black/5 flex flex-col justify-between"
+              className="snap-center shrink-0"
               style={{
+                width: "85vw",
+                minWidth: "280px",
+                maxWidth: "360px",
                 backgroundColor: "#f4f5f7",
                 padding: "24px 20px",
-                minHeight: "260px"
+                minHeight: "260px",
+                borderRadius: "16px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                border: "1px solid rgba(0, 0, 0, 0.05)",
+                boxShadow: "0 6px 20px rgba(0, 0, 0, 0.05)",
+                flexShrink: 0
               }}
             >
               <div>
                 {/* Brand Primary Accent Quote Badge (#D8FF00) */}
                 <div 
-                  className="w-8 h-8 rounded-lg text-[#151515] flex items-center justify-center shrink-0"
-                  style={{ marginBottom: "16px" }}
+                  style={{ 
+                    width: "32px", 
+                    height: "32px", 
+                    borderRadius: "8px", 
+                    color: "#151515", 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    marginBottom: "16px",
+                    flexShrink: 0
+                  }}
                 >
                   <svg width="15" height="13" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 24V14.4C0 6.4 4.8 1.6 12 0L13.6 3.2C8.8 4.4 6.4 7.2 6.4 11.2H12V24H0ZM16 24V14.4C16 6.4 20.8 1.6 28 0L29.6 3.2C24.8 4.4 22.4 7.2 22.4 11.2H28V24H16Z" fill="currentColor"/>
@@ -281,8 +311,13 @@ export default function TestimonialsSection() {
 
                 {/* Quote Text */}
                 <p 
-                  className="text-[#1a1a1a] font-semibold"
-                  style={{ fontSize: "15px", lineHeight: "1.6", marginBottom: "20px" }}
+                  style={{ 
+                    color: "#1a1a1a", 
+                    fontWeight: 600, 
+                    fontSize: "15px", 
+                    lineHeight: "1.6", 
+                    margin: "0 0 20px 0" 
+                  }}
                 >
                   "{test.quote}"
                 </p>
@@ -290,25 +325,45 @@ export default function TestimonialsSection() {
 
               {/* Author Profile Footer */}
               <div 
-                className="flex items-center"
-                style={{ gap: "12px", marginTop: "auto", paddingTop: "8px" }}
+                style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: "12px", 
+                  marginTop: "auto", 
+                  paddingTop: "8px" 
+                }}
               >
                 <img 
                   src={test.avatar} 
                   alt={test.name} 
-                  className="rounded-full object-cover shrink-0 border border-black/10" 
-                  style={{ width: "40px", height: "40px" }}
+                  style={{ 
+                    width: "40px", 
+                    height: "40px", 
+                    borderRadius: "9999px", 
+                    objectFit: "cover", 
+                    flexShrink: 0, 
+                    border: "1px solid rgba(0,0,0,0.1)" 
+                  }}
                 />
-                <div className="flex flex-col text-left">
+                <div style={{ display: "flex", flexDirection: "column", textAlign: "left" }}>
                   <h4 
-                    className="font-semibold text-[#111111] leading-snug"
-                    style={{ fontSize: "14.5px" }}
+                    style={{ 
+                      fontWeight: 600, 
+                      color: "#111111", 
+                      lineHeight: 1.25, 
+                      fontSize: "14.5px",
+                      margin: 0
+                    }}
                   >
                     {test.name}
                   </h4>
                   <p 
-                    className="text-[#777777] font-normal"
-                    style={{ fontSize: "12px", marginTop: "2px" }}
+                    style={{ 
+                      color: "#777777", 
+                      fontWeight: 400, 
+                      fontSize: "12px", 
+                      margin: "2px 0 0 0" 
+                    }}
                   >
                     {test.role}
                   </p>
@@ -319,20 +374,21 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Carousel Dots */}
-        <div className="flex justify-center items-center gap-2 mt-6">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", marginTop: "24px" }}>
           {testimonials.map((_, idx) => (
             <button
               key={idx}
               onClick={() => scrollToCard(idx)}
               aria-label={`Go to testimonial ${idx + 1}`}
-              className="transition-all duration-300 rounded-full"
               style={{
                 width: activeIndex === idx ? "24px" : "8px",
                 height: "8px",
                 backgroundColor: activeIndex === idx ? "#111111" : "#D1D5DB",
                 border: "none",
+                borderRadius: "9999px",
                 padding: 0,
-                cursor: "pointer"
+                cursor: "pointer",
+                transition: "all 0.3s ease"
               }}
             />
           ))}

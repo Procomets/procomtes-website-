@@ -14,16 +14,40 @@ function ScrollHandler() {
   useEffect(() => {
     if (hash) {
       const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
+      const scrollToElement = (attempts) => {
+        const element = document.getElementById(id);
+        if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+        } else if (attempts > 0) {
+          setTimeout(() => scrollToElement(attempts - 1), 100);
+        }
+      };
+      scrollToElement(10);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [pathname, hash]);
+
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      const anchor = e.target.closest('a');
+      if (anchor) {
+        const href = anchor.getAttribute('href') || anchor.getAttribute('to') || '';
+        if (href.includes('#')) {
+          const id = href.split('#')[1];
+          const element = document.getElementById(id);
+          if (element) {
+            e.preventDefault();
+            element.scrollIntoView({ behavior: 'smooth' });
+            window.history.pushState(null, '', href);
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
 
   return null;
 }

@@ -59,7 +59,7 @@ export default function Hero() {
             style={{ marginTop: '18px' }}
           >
             <Button
-              variant="primary"
+              variant="shiny"
               href="/#contact"
               className="text-sm px-8 py-3 shadow-2xl"
             >

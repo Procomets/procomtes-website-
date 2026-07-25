@@ -19,13 +19,13 @@ const teamMembers = [
   },
   {
     name: "Santhosh",
-    designation: "Creative UI/UX Designer",
+    designation: "Co-Founder & Creative UI/UX Designer",
     image: "/images/team-santhosh.png",
     linkedin: "https://linkedin.com"
   },
   {
     name: "Ashvitha",
-    designation: "Lead Software Engineer",
+    designation: "Co-Founder & Marketing Lead",
     image: "/images/team-ashvitha.png",
     linkedin: "https://linkedin.com"
   }
@@ -97,60 +97,41 @@ export default function TeamSection() {
       ref={sectionRef}
       style={{
         backgroundColor: "#ffffff",
-        padding: "80px 0 100px",
-        height: "auto",
-        minHeight: "fit-content",
-        display: "block",
+        padding: "80px 0 120px",
         position: "relative"
       }}
     >
       <div className="site-container">
 
-        {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+        {/* Heading Section */}
+        <div style={{ textAlign: "left", marginBottom: "48px" }}>
           <h2 style={{
-            fontSize: "clamp(56px, 6vw, 90px)",
-            fontWeight: 900,
-            lineHeight: 1.05,
+            fontSize: "clamp(40px, 5vw, 64px)",
+            fontWeight: 800,
+            lineHeight: 1.1,
             letterSpacing: "-0.03em",
-            margin: 0,
+            margin: "0 0 12px 0",
+            color: "#111111",
             fontFamily: "'Inter', sans-serif",
           }}>
-            <span
-              ref={headingLine1Ref}
-              style={{ color: "#111111", display: "inline-block", opacity: 0, willChange: "opacity" }}
-            >
-              The Minds Behind{" "}
-            </span>
-            <span style={{ position: "relative", display: "inline-block" }}>
-              <span
-                ref={headingLine2Ref}
-                style={{
-                  color: "#D8FF00",
-                  display: "inline-block",
-                  opacity: 0,
-                  willChange: "opacity",
-                  position: "relative",
-                  textShadow: "0px 0px 40px rgba(216,255,0,0.35)",
-                  zIndex: 1,
-                }}
-              >
-                Procomets
-              </span>
+            <span ref={headingLine1Ref} style={{ display: "inline-block", opacity: 0 }}>
+              Meet Our Team
             </span>
           </h2>
-        </div>
-
-        {/* Description */}
-        <div ref={descRef} style={{ textAlign: "center", marginBottom: "80px", opacity: 0 }}>
-          <p style={{
-            maxWidth: "720px",
-            margin: "0 auto",
-            fontSize: "18px",
-            color: "rgba(0,0,0,0.65)",
-            lineHeight: 1.7,
-          }}>
-            Our multidisciplinary team combines business strategy, software engineering, AI, design, and analytics to build modern digital solutions that help businesses scale.
+          
+          <p 
+            ref={descRef} 
+            style={{
+              fontSize: "15px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              color: "#9CA3AF",
+               
+              margin: 0,
+              opacity: 0
+            }}
+          >
+            Minds Behind Procomets
           </p>
         </div>
 
@@ -160,69 +141,52 @@ export default function TeamSection() {
             <div
               key={member.name}
               className="team-card"
+              ref={el => cardImagesRef.current[index] = el}
+              style={{ opacity: 0 }}
             >
-              {/* Image Container */}
-              <div 
-                ref={el => cardImagesRef.current[index] = el}
-                className="team-card-image-wrap" 
-                style={{ opacity: 0 }}
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="team-card-image"
-                  loading="lazy"
-                  draggable="false"
-                />
+              <img
+                src={member.image}
+                alt={member.name}
+                className="team-card-image"
+                loading="lazy"
+                draggable="false"
+              />
 
-                {/* LinkedIn Overlay */}
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="team-card-overlay"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    {/* LinkedIn Icon */}
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <rect x="2" y="9" width="4" height="12" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="4" cy="4" r="2" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span style={{ color: "#fff", fontSize: "13px", fontWeight: 600, letterSpacing: "0.04em" }}>View LinkedIn</span>
-                    {/* Arrow */}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: "2px" }}>
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </a>
-              </div>
-
-              {/* Text Below Image */}
-              <div 
-                ref={el => cardTextsRef.current[index] = el}
-                style={{ padding: "18px 4px 8px", opacity: 0 }}
-              >
+              {/* Gradient & Content Overlay at Bottom Left */}
+              <div className="team-card-content">
                 <h3 style={{
-                  fontSize: "28px",
+                  fontSize: "22px",
                   fontWeight: 700,
-                  color: "#111111",
-                  margin: "0 0 8px 0",
+                  color: "#ffffff",
+                  margin: "0 0 4px 0",
                   lineHeight: 1.2,
                 }}>
                   {member.name}
                 </h3>
                 <span style={{
                   fontSize: "12px",
-                  fontWeight: 700,
-                  letterSpacing: "0.13em",
-                  color: "#646464ff",
-                  textTransform: "uppercase",
+                  fontWeight: 600,
+                  color: "rgba(255, 255, 255, 0.8)",
                   display: "block",
                 }}>
                   {member.designation}
                 </span>
+
+                {/* LinkedIn link visible on hover */}
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="2" y="9" width="4" height="12" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="4" cy="4" r="2" stroke="#D8FF00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
               </div>
             </div>
           ))}
@@ -234,7 +198,7 @@ export default function TeamSection() {
         .team-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 28px;
+          gap: 24px;
         }
 
         @media (max-width: 1024px) {
@@ -252,29 +216,19 @@ export default function TeamSection() {
         }
 
         .team-card {
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          background-color: #151515;
+          aspect-ratio: 4 / 5;
           cursor: pointer;
-          transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
-          will-change: transform;
-          display: flex;
-          flex-direction: column;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .team-card:hover {
-          /* Removed translateY */
-        }
-
-        .team-card-image-wrap {
-          position: relative;
-          border-radius: 18px;
-          overflow: hidden;
-          border: 1px solid rgba(0, 0, 0, 0.06);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-          aspect-ratio: 4 / 5;
-          transition: box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .team-card:hover .team-card-image-wrap {
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+          transform: translateY(-6px);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .team-card-image {
@@ -282,31 +236,44 @@ export default function TeamSection() {
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+          transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .team-card:hover .team-card-image {
-          transform: scale(1.05);
+          transform: scale(1.06);
         }
 
-        .team-card-overlay {
+        .team-card-content {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
-          padding: 20px 24px;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+          padding: 32px 24px 24px;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
           display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          opacity: 0;
-          transition: opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1);
-          text-decoration: none;
-          border-radius: 0 0 18px 18px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+          transition: padding-bottom 0.3s ease;
         }
 
-        .team-card:hover .team-card-overlay {
+        .linkedin-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          color: #D8FF00;
+          font-size: 12px;
+          font-weight: 600;
+          text-decoration: none;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .team-card:hover .linkedin-link {
           opacity: 1;
+          transform: translateY(0);
         }
       `}</style>
     </section>

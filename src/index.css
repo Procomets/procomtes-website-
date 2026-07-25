@@ -40,6 +40,11 @@
   50% { box-shadow: 0 0 30px var(--color-accent-glow); }
 }
 
+@keyframes shiny-metal {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
 @keyframes carousel {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }

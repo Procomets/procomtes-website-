@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <section 
       className="relative w-full flex flex-col items-center pt-48 pb-16" 
-      style={{ paddingTop: '80px' }}
+      style={{ paddingTop: '100px' }}
       id="hero"
     >
       {/* ─── Content Container ─── */}

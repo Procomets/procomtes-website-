@@ -4,29 +4,34 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import sharanImg from "../assets/minds behind procomets/sharan.jpg";
+import pranavImg from "../assets/minds behind procomets/pranav.jpg";
+import santhoshImg from "../assets/minds behind procomets/Santhosh.jpg";
+import ashvithaImg from "../assets/minds behind procomets/Ashvitha.jpg";
+
 const teamMembers = [
   {
     name: "Sharan",
     designation: "Founder & Chief Executive Officer",
-    image: "src/assets/minds behind procomets/sharan.jpg",
+    image: sharanImg,
     linkedin: "https://www.linkedin.com/in/sharanrajt/"
   },
   {
     name: "Pranav",
     designation: "Co-Founder & Business Analytics Lead",
-    image: "src/assets/minds behind procomets/pranav.jpg",
+    image: pranavImg,
     linkedin: "https://www.linkedin.com/in/pranav-m-75a156293/"
   },
   {
     name: "Santhosh",
     designation: "Co-Founder & Creative UI/UX Designer",
-    image: "src/assets/minds behind procomets/Santhosh.jpg",
+    image: santhoshImg,
     linkedin: "https://www.linkedin.com/in/santhosh-m-b372342a5/"
   },
   {
     name: "Ashvitha",
     designation: "Co-Founder & Marketing Lead",
-    image: "src/assets/minds behind procomets/Ashvitha.jpg",
+    image: ashvithaImg,
     linkedin: "https://www.linkedin.com/in/ashvithar/"
   }
 ];

@@ -2,32 +2,32 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Can I cancel my subscription at any time?",
-    answer: "Yes, you can cancel or adjust your ongoing development maintenance subscription at any time with 30 days prior notice. There are no hidden cancellation fees or long-term lock-in contracts."
+    question: "What is your development process from idea to launch?",
+    answer: "We guide you through discovery, wireframing, development, rigorous testing, and final deployment. You get clear updates at every stage, so you are always in complete control of your build."
   },
   {
     question: "Can I request a refund on my purchase if I'm not satisfied?",
     answer: "We are aware that bad refund policies are unpleasant. If you are not satisfied with Procomets services within the first 15 days of your project start, we will offer you a full refund. Please note that custom software licenses and dedicated engineering hours delivered will be reviewed. The refund is applicable if requirements have not been executed."
   },
   {
-    question: "Do I still have the rights to use the software if I cancel my subscription?",
-    answer: "Yes. All custom code, design assets, and intellectual property built during active billing periods belong 100% to you and remain fully accessible for your business use."
+    question: "How do I know if my business needs a custom ERP system?",
+    answer: "If your team spends hours manually re-entering data across spreadsheets and off-the-shelf software feels too rigid, a custom ERP is your next best growth step. It adapts entirely to your unique business processes instead of forcing you to adapt to generic software."
   },
   {
-    question: "Am I allowed to use Procomets solutions on behalf of a third-party?",
-    answer: "Absolutely. We provide flexible agency partnership and white-label development services, allowing you to deploy solutions for your third-party clients."
+    question: "Can a custom ERP integrate with my existing tools (accounting, CRM, HRMS)?",
+    answer: "Absolutely, seamless integrations are one of our core strengths. We build custom APIs that bridge your existing tools directly into your new system without missing a beat."
   },
   {
     question: "Can I license a single track or request a single custom module?",
     answer: "Yes! In addition to full end-to-end development, we build standalone modules, custom API integrations, AI workflows, and dedicated analytics dashboards."
   },
   {
-    question: "Do you offer discounts for educational programs or non-profit organizations?",
-    answer: "Yes, we offer special pricing structures for non-profit organizations, educational institutions, and early-stage social impact initiatives."
+    question: "Do you produce brand videos as a standalone service, or only alongside software projects?",
+    answer: "We offer video production and motion graphics both as a standalone service and as an addon to custom software builds. Whether you need a full rebrand or a product explainer, we have you covered"
   },
   {
-    question: "Still can't find what you're looking for?",
-    answer: "Our team is here to assist you. Reach out through our contact form or schedule a direct consultation to get answers to your specific project questions."
+    question: "Do you provide software maintenance and support after launch?",
+    answer: "Yes, we stand behind everything we build with dedicated post-launch support and SLA maintenance plans. We keep your systems secure, up to date, and scaling smoothly as your company expands."
   }
 ];
 

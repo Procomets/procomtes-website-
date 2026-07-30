@@ -34,7 +34,7 @@ export default function Hero() {
             animate="visible"
             className="text-center w-full text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.8rem] font-extrabold leading-[1.25] tracking-tight mx-auto text-text-primary"
           >
-            Custom Software Development Company Building Business-Specific Digital Solutions
+            Custom ERP, AI Automation & Software Development for Businesses Scaling Beyond Manual Processes
           </motion.h1>
 
           {/* ─── H2 / Services List ─── */}
@@ -43,11 +43,9 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-center w-full mt-6 md:mt-8 text-text-secondary text-sm sm:text-base font-medium leading-[2.2]"
+            className="text-center w-full mt-6 md:mt-8 text-text-secondary text-sm sm:text-base font-medium leading-[1.8] "
           >
-            Custom ERP Development <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Software Development <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Web Development <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Mobile App Development
-            <br className="hidden md:block" />
-            AI Automation <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Business Analytics <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Motion Graphics <span className="text-text-secondary/40 mx-2 sm:mx-3">•</span> Video Editing
+            Procomets builds business-specific ERP systems, AI automation, websites, mobile apps, and data dashboards for companies that need software built around how they actually operate, not a template they have to adapt to.
           </motion.h2>
 
           {/* ─── CTA Button ─── */}
@@ -63,7 +61,7 @@ export default function Hero() {
               href="/#contact"
               className="text-sm px-8 py-3 shadow-2xl"
             >
-              Contact Us
+              Get a Free Project Estimate
             </Button>
           </motion.div>
         </div>

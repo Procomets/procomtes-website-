@@ -5,10 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { prefix: "", value: 95, suffix: "%", label: "Complete customer satisfaction" },
-  { prefix: "", value: 10, suffix: "+", label: "Innovation and valuable insight" },
-  { prefix: "$", value: 10, suffix: "m", label: "Highly efficient financial strategies" },
-  { prefix: "", value: 50, suffix: "m", label: "Users worldwide, providing them with" },
+  { prefix: "", value: 20, suffix: "+", label: "Projects Delivered" },
+  { prefix: "", value: 3, suffix: "+", label: "Years in Business" },
+  { prefix: "", value: 5, suffix: "+", label: "Industries Served" },
+  { prefix: "", value: 95, suffix: "%", label: "Client Retention / Repeat Business Rate" },
 ];
 
 export default function StatsSection() {

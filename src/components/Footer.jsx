@@ -54,7 +54,7 @@ export default function Footer() {
 
             {/* Tagline / Description */}
             <p className="text-[#9E9EAE] text-[15px] leading-[1.8] mb-10 max-w-[420px]">
-              Engineering intelligent systems that transform complex operations into scalable, high-performance digital ecosystems driven by strategy, automation, and business impact.
+              We build the ERP systems, AI automation, and software that run your business and the websites, apps, and video content that represent it to the world. Procomets is a custom software development company based in Chennai, Tamil Nadu, serving clients across India and internationally.
             </p>
 
             {/* Social Icons */}

@@ -396,10 +396,15 @@ export default function ContactSection() {
             style={{ paddingTop: "4px" }}
           >
             <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+              {/* Context Text */}
+              <p style={{ fontSize: "16px", color: "#4B5563", lineHeight: 1.6, margin: 0 }}>
+                Tell us what you're trying to build or fix. We'll come back with a clear scope, timeline, and cost estimate within 48 hours. no obligation.
+              </p>
+
               {/* Email */}
               <div>
                 <span style={{ display: "block", fontSize: "14px", color: "#6B7280", fontWeight: "400", marginBottom: "6px" }}>Email:</span>
-                <a href="mailto:procomets3@gmail.com" style={{ fontSize: "17px", fontWeight: "700", color: "#111827", textDecoration: "none" }} className="hover:underline">
+                <a href="mailto:procomets3@gmail.com" style={{ fontSize: "17px", fontWeight: "500", color: "#111827", textDecoration: "none" }} className="hover:underline">
                   procomets3@gmail.com
                 </a>
               </div>
@@ -407,16 +412,16 @@ export default function ContactSection() {
               {/* Phone */}
               <div>
                 <span style={{ display: "block", fontSize: "14px", color: "#6B7280", fontWeight: "400", marginBottom: "6px" }}>Phone:</span>
-                <p style={{ fontSize: "17px", fontWeight: "700", color: "#111827", lineHeight: 1.4, margin: 0 }}>
-                  +91 80151 16201<br/>
-                  +91 97890 07999
+                <p style={{ fontSize: "17px", fontWeight: "500", color: "#111827", lineHeight: 1.4, margin: 0 }}>
+                  Chennai Office: +91 80151 16201<br/>
+                  Support :+91 97890 07999
                 </p>
               </div>
 
               {/* Office */}
               <div>
                 <span style={{ display: "block", fontSize: "14px", color: "#6B7280", fontWeight: "400", marginBottom: "6px" }}>Office:</span>
-                <p style={{ fontSize: "17px", fontWeight: "700", color: "#111827", lineHeight: 1.4, margin: 0 }}>
+                <p style={{ fontSize: "17px", fontWeight: "500", color: "#111827", lineHeight: 1.4, margin: 0 }}>
                   Chennai, Tamil Nadu, India
                 </p>
               </div>

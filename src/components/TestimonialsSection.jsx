@@ -50,8 +50,8 @@ export default function TestimonialsSection() {
         scrollTrigger: {
           trigger: wrapperRef.current,
           start: "top top",
-          end: "+=220%",
-          scrub: 0.6,
+          end: "+=800%", // Drastically slow down the speed so it's readable
+          scrub: 2.5, // Buttery smooth interpolation delay
           pin: true,
         }
       });
@@ -101,6 +101,9 @@ export default function TestimonialsSection() {
 
       // Gentle overall float animation towards end of scroll
       tl.to(cards, { y: -15, ease: "none", duration: 0.4 }, 2.3);
+
+      // Add a buffer at the end to absorb scroll momentum before unpinning
+      tl.to({}, { duration: 1.0 });
     });
 
     return () => mm.revert();

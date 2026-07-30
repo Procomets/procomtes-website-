@@ -8,22 +8,22 @@ const valuesData = [
   {
     num: "01",
     title: "Quality First",
-    desc: "We prioritize well-crafted, robust digital solutions designed to bring long-term value, high performance, and reliability to your business operations."
+    desc: "every build goes through senior review and QA before launch, not just before invoice."
   },
   {
     num: "02",
     title: "Customer-Centered",
-    desc: "Your success comes first, with seamless collaborative experiences, responsive support, and thoughtfully engineered technology tailored to your needs."
+    desc: "you get a named point of contact and a documented scope, not a rotating support inbox."
   },
   {
     num: "03",
     title: "Integrity & Transparency",
-    desc: "We believe in honest communication, ethical practices, and delivering exactly what we promise—no surprises, full accountability."
+    desc: "fixed-scope pricing agreed upfront, with any change discussed before it's billed."
   },
   {
     num: "04",
-    title: "Community & Impact",
-    desc: "We build lasting relationships by valuing our clients, empowering teams, and supporting sustainable digital transformation whenever possible."
+    title: "Long-Term Partnership",
+    desc: "post-launch support included, because software you build and abandon is a liability, not an asset."
   }
 ];
 

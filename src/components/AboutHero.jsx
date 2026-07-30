@@ -65,17 +65,8 @@ export default function AboutHero() {
             fontWeight: "500"
           }}
         >
-          At Procomets, we specialize in creating customized software, AI-powered solutions, and digital experiences that solve real business challenges. Our team combines technical expertise, creativity, and innovation to deliver scalable solutions that help organizations improve efficiency, automate processes, and accelerate growth.
+          At Procomets, we build custom ERP systems, AI automation, websites, mobile apps, and business analytics dashboards for companies that need technology built around how they actually operate not a template they're forced to adapt to. Since 2026, our team has delivered 20+ projects across 5 industries, combining hands-on engineering with the creative and analytics skills to launch a product and tell its story from architecture to the brand video that introduces it to customers.
         </p>
-        <p style={{
-            fontSize: "16px",
-            color: "#6B7280",
-            lineHeight: 1.6,
-            marginBottom: "24px",
-            textAlign: "left",
-            maxWidth: "1400px",
-            fontWeight: "500"
-          }} >Procomets, we help businesses transform ideas into powerful digital solutions. From startups to established enterprises, we design, develop, and deliver innovative technology that streamlines operations, enhances customer experiences, and drives business growth.</p>
       </div>
     </section>
   );

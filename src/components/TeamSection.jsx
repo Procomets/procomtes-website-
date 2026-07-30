@@ -8,26 +8,26 @@ const teamMembers = [
   {
     name: "Sharan",
     designation: "Founder & Chief Executive Officer",
-    image: "/images/team-sharan.png",
-    linkedin: "https://linkedin.com"
+    image: "src/assets/minds behind procomets/sharan.jpg",
+    linkedin: "https://www.linkedin.com/in/sharanrajt/"
   },
   {
     name: "Pranav",
     designation: "Co-Founder & Business Analytics Lead",
-    image: "/images/team-pranav.png",
-    linkedin: "https://linkedin.com"
+    image: "src/assets/minds behind procomets/pranav.jpg",
+    linkedin: "https://www.linkedin.com/in/pranav-m-75a156293/"
   },
   {
     name: "Santhosh",
     designation: "Co-Founder & Creative UI/UX Designer",
-    image: "/images/team-santhosh.png",
-    linkedin: "https://linkedin.com"
+    image: "src/assets/minds behind procomets/Santhosh.jpg",
+    linkedin: "https://www.linkedin.com/in/santhosh-m-b372342a5/"
   },
   {
     name: "Ashvitha",
     designation: "Co-Founder & Marketing Lead",
-    image: "/images/team-ashvitha.png",
-    linkedin: "https://linkedin.com"
+    image: "src/assets/minds behind procomets/Ashvitha.jpg",
+    linkedin: "https://www.linkedin.com/in/ashvithar/"
   }
 ];
 

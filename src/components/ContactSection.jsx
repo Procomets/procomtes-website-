@@ -118,19 +118,58 @@ export default function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      setTimeout(() => {
+      
+      // IMPORTANT: Replace this string with your deployed Google Apps Script Web App URL
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzChax3FK22llmVRqZP9qO8hXgaF8hfbUQlK4USIAWZosU-zlWvhWk-KGN2yRQKp-3jGw/exec"; 
+      
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("company", formData.company);
+      form.append("email", formData.email);
+      form.append("phone", formData.phone);
+      form.append("service", formData.service);
+      form.append("message", formData.message);
+
+      try {
+        if (scriptURL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+          console.warn("Please update the scriptURL with your Google Apps Script Web App URL.");
+          // Fallback to simulate success if URL is not yet configured
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setIsSuccess(true);
+            gsap.fromTo(successRef.current,
+              { opacity: 0, scale: 0.9, y: 20 },
+              { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }
+            );
+          }, 1200);
+          return;
+        }
+
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: form,
+        });
+
+        if (response.ok) {
+          setIsSubmitting(false);
+          setIsSuccess(true);
+          
+          gsap.fromTo(successRef.current,
+            { opacity: 0, scale: 0.9, y: 20 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }
+          );
+        } else {
+          throw new Error("Network response was not ok.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error.message);
         setIsSubmitting(false);
-        setIsSuccess(true);
-        
-        gsap.fromTo(successRef.current,
-          { opacity: 0, scale: 0.9, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }
-        );
-      }, 1200);
+        alert("There was an error submitting the form. Please check the URL or try again later.");
+      }
     }
   };
 
@@ -169,8 +208,8 @@ export default function ContactSection() {
                 style={{ padding: "48px 24px", borderRadius: "16px" }}
               >
                 <div 
-                  className="bg-[#D8FF00] rounded-full flex items-center justify-center mx-auto"
-                  style={{ width: "64px", height: "64px", marginBottom: "16px" }}
+                  className="bg-[#D8FF00] rounded-full flex items-center justify-center"
+                  style={{ width: "64px", height: "64px", margin: "0 auto 16px auto" }}
                 >
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12L10 17L20 7" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>

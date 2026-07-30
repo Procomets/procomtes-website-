@@ -149,11 +149,13 @@
   min-height: 400px;
   align-items: stretch;
   will-change: transform;
+  padding-right: 24px;
 }
 
 @media (min-width: 768px) {
   .services-track {
     gap: 1.5rem;
+    padding-right: 40px;
   }
 }
 

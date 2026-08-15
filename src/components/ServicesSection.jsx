@@ -2,6 +2,14 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./ServicesSection.css"; // Import the CSS file
 
+import erpSystemImg from "../assets/ERP System.png";
+import aiAutomationImg from "../assets/AI AUTOMATION (2).png";
+import websiteLpImg from "../assets/WEBSITE LP.png";
+import mobileAppImg from "../assets/MOBILE APP.png";
+import businessAnalyticsImg from "../assets/BUSINESS ANALYITICS .png";
+import videoEditingImg from "../assets/VIdeo editing.png";
+import scoImg from "../assets/sco.png";
+
 const servicesData = [
   {
     number: "01",
@@ -9,7 +17,7 @@ const servicesData = [
     tags: ["Enterprise", "Operations"],
     description: "Stop adapting to rigid software. We build custom ERPs tailored directly to your inventory, finance, and operations—replacing spreadsheets for good.",
     cta: "Get an ERP Assessment",
-    image: "src/assets/ERP System.png",
+    image: erpSystemImg,
     bgColor: "#e0ffabff" // Lime green
   },
   {
@@ -18,7 +26,7 @@ const servicesData = [
     tags: ["AI Agents", "Efficiency"],
     description: "Cut manual work. Eliminate manual tasks with custom AI agents, chatbots, and workflow automation scoped to save real hours.",
     cta: "Book an AI Readiness Call",
-    image: "src/assets/AI AUTOMATION (2).png",
+    image: aiAutomationImg,
     bgColor: "#ffd7d7ff" // Light gray
   },
   {
@@ -27,7 +35,7 @@ const servicesData = [
     tags: ["React", "Next.js"],
     description: "Built for conversions, not just looks. Fast, SEO-optimized React & Next.js sites designed to drive leads with clear CTAs and clean UX.",
     cta: "Start My Website Project",
-    image: "src/assets/WEBSITE LP.png",
+    image: websiteLpImg,
     bgColor: "#FFDFA8" // Beige
   },
   {
@@ -36,7 +44,7 @@ const servicesData = [
     tags: ["iOS", "Android"],
     description: "Launch iOS and Android apps with confidence using Flutter and React Native, supported by rock-solid backend architecture and QA.",
     cta: "Plan My App",
-    image: "src/assets/MOBILE APP.png",
+    image: mobileAppImg,
     bgColor: "#d1efffff" // Light blue
   },
   {
@@ -45,7 +53,7 @@ const servicesData = [
     tags: ["Data", "Insights"],
     description: "Data built for action, not clutter. Interactive Power BI dashboards, SQL reporting, and KPI tracking tailored to the metrics that run your business.",
     cta: "Request a Dashboard Demo",
-    image: "src/assets/BUSINESS ANALYITICS .png",
+    image: businessAnalyticsImg,
     bgColor: "#ffcdcdff" // Orange
   },
   {
@@ -54,7 +62,7 @@ const servicesData = [
     tags: ["Video", "Brand"],
     description: "Understandable in 60 seconds or less. High-converting brand videos, product explainers, and motion graphics built for the platforms your audience uses.",
     cta: "See Our Video Work",
-    image: "src/assets/VIdeo editing.png",
+    image: videoEditingImg,
     bgColor: "#e9d5ff" // Purple
   },
   {
@@ -63,7 +71,7 @@ const servicesData = [
     tags: ["Search", "AI Visibility"],
     description: "Boost your visibility across search engines, AI platforms, and local search.",
     cta: "Boost My Online Visibility",
-    image: "src/assets/sco.png",
+    image: scoImg,
     bgColor: "#dfeeffff" // Pink/Red
   }
 ];

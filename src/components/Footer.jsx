@@ -8,7 +8,7 @@ export default function Footer() {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/#services" },
-    { label: "Our Team", href: "/about" },
+    // { label: "Our Team", href: "/about" },
   ];
 
   const serviceLinks = [

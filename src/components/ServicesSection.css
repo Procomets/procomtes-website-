@@ -3,11 +3,9 @@
 }
 
 .services-wrapper {
-  height: 100dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   padding-top: 20px;
   padding-top: 5rem;
@@ -125,6 +123,14 @@
   min-height: 0;
   display: flex;
   align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.services-track-container::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -145,10 +151,9 @@
   display: flex;
   gap: 1rem;
   width: max-content;
-  height: 80%;
+  height: 400px;
   min-height: 400px;
   align-items: stretch;
-  will-change: transform;
   padding-right: 24px;
 }
 
@@ -156,6 +161,7 @@
   .services-track {
     gap: 1.5rem;
     padding-right: 40px;
+    height: 450px;
   }
 }
 

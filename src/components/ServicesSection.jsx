@@ -1,9 +1,6 @@
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import "./ServicesSection.css"; // Import the CSS file
-
-gsap.registerPlugin(ScrollTrigger);
 
 const servicesData = [
   {
@@ -12,7 +9,7 @@ const servicesData = [
     tags: ["Enterprise", "Operations"],
     description: "Stop adapting to rigid software. We build custom ERPs tailored directly to your inventory, finance, and operations—replacing spreadsheets for good.",
     cta: "Get an ERP Assessment",
-    image: "/images/erp-service.png",
+    image: "src/assets/ERP System.png",
     bgColor: "#e0ffabff" // Lime green
   },
   {
@@ -21,7 +18,7 @@ const servicesData = [
     tags: ["AI Agents", "Efficiency"],
     description: "Cut manual work. Eliminate manual tasks with custom AI agents, chatbots, and workflow automation scoped to save real hours.",
     cta: "Book an AI Readiness Call",
-    image: "/images/ai-automation-service.png",
+    image: "src/assets/AI AUTOMATION (2).png",
     bgColor: "#ffd7d7ff" // Light gray
   },
   {
@@ -30,8 +27,8 @@ const servicesData = [
     tags: ["React", "Next.js"],
     description: "Built for conversions, not just looks. Fast, SEO-optimized React & Next.js sites designed to drive leads with clear CTAs and clean UX.",
     cta: "Start My Website Project",
-    image: "/images/web-service.png",
-    bgColor: "#ffffa4ff" // Beige
+    image: "src/assets/WEBSITE LP.png",
+    bgColor: "#FFDFA8" // Beige
   },
   {
     number: "04",
@@ -39,7 +36,7 @@ const servicesData = [
     tags: ["iOS", "Android"],
     description: "Launch iOS and Android apps with confidence using Flutter and React Native, supported by rock-solid backend architecture and QA.",
     cta: "Plan My App",
-    image: "/images/mobile-service.png",
+    image: "src/assets/MOBILE APP.png",
     bgColor: "#d1efffff" // Light blue
   },
   {
@@ -48,8 +45,8 @@ const servicesData = [
     tags: ["Data", "Insights"],
     description: "Data built for action, not clutter. Interactive Power BI dashboards, SQL reporting, and KPI tracking tailored to the metrics that run your business.",
     cta: "Request a Dashboard Demo",
-    image: "/images/analytics-service.png",
-    bgColor: "#fed7aa" // Orange
+    image: "src/assets/BUSINESS ANALYITICS .png",
+    bgColor: "#ffcdcdff" // Orange
   },
   {
     number: "06",
@@ -57,17 +54,17 @@ const servicesData = [
     tags: ["Video", "Brand"],
     description: "Understandable in 60 seconds or less. High-converting brand videos, product explainers, and motion graphics built for the platforms your audience uses.",
     cta: "See Our Video Work",
-    image: "/images/video-service.png",
+    image: "src/assets/VIdeo editing.png",
     bgColor: "#e9d5ff" // Purple
   },
   {
     number: "07",
-    title: "UI/UX\nDesign",
-    tags: ["Figma", "Experience"],
-    description: "Drive higher retention with wireframe-first UI/UX designs built to solve real user friction, not just look pretty.",
-    cta: "Review My Product's UX",
-    image: "/images/uiux-service.png",
-    bgColor: "#8dff91ff" // Pink/Red
+    title: "SEO, AEO,\nGEO & GBP",
+    tags: ["Search", "AI Visibility"],
+    description: "Boost your visibility across search engines, AI platforms, and local search.",
+    cta: "Boost My Online Visibility",
+    image: "src/assets/sco.png",
+    bgColor: "#dfeeffff" // Pink/Red
   }
 ];
 
@@ -76,40 +73,17 @@ export default function ServicesSection() {
   const wrapperRef = useRef(null);
   const cardsContainerRef = useRef(null);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      const cardsContainer = cardsContainerRef.current;
-      
-      const getScrollAmount = () => {
-        let cardsContainerWidth = cardsContainer.scrollWidth;
-        let viewportWidth = window.innerWidth;
-        // Scroll enough to show the last card, considering padding
-        return -(cardsContainerWidth - viewportWidth + (viewportWidth < 768 ? 32 : 80)); 
-      };
+  const scrollLeft = () => {
+    if (cardsContainerRef.current) {
+      cardsContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
 
-      const tl = gsap.timeline();
-      tl.to(cardsContainer, {
-        x: getScrollAmount,
-        ease: "none",
-        duration: 1
-      });
-      // Add a buffer at the end to absorb scroll momentum before unpinning
-      tl.to({}, { duration: 0.3 });
-
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: () => `+=${cardsContainer.scrollWidth * 1.5}`, // Balanced speed: not too fast, not too slow
-        pin: true,
-        animation: tl,
-        scrub: 1, // Snappier response
-        invalidateOnRefresh: true,
-      });
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  const scrollRight = () => {
+    if (cardsContainerRef.current) {
+      cardsContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section ref={containerRef} id="services" className="services-section">
@@ -130,13 +104,13 @@ export default function ServicesSection() {
           <div className="services-nav">
              <div 
                className="services-nav-btn" 
-               onClick={() => window.scrollBy({ top: -400, behavior: 'smooth' })}
+               onClick={scrollLeft}
              >
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
              </div>
              <div 
                className="services-nav-btn" 
-               onClick={() => window.scrollBy({ top: 400, behavior: 'smooth' })}
+               onClick={scrollRight}
              >
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
              </div>
@@ -144,11 +118,11 @@ export default function ServicesSection() {
         </div>
 
         {/* Cards Track */}
-        <div className="services-track-container">
-          <div 
-            ref={cardsContainerRef}
-            className="services-track"
-          >
+        <div 
+          ref={cardsContainerRef}
+          className="services-track-container"
+        >
+          <div className="services-track">
             {servicesData.map((service, index) => (
               <div 
                 key={index}
@@ -182,10 +156,10 @@ export default function ServicesSection() {
                       e.target.src = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
                     }}
                   />
-                  <button className="service-card-cta">
+                  <Link to="/#contact" className="service-card-cta">
                     {service.cta}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft: '6px'}}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}

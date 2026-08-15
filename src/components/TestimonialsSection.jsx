@@ -6,10 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "Exceeded our expectations with innovative designs that brought our vision to life — a truly remarkable creative agency.",
-    name: "Samantha Johnson",
-    role: "CEO and Co-founder of ABC Company",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
+    quote: "Procomets Solutions transformed our operations with a smart, reliable ERP built around our business. It has made our processes faster, simpler, and more efficient.",
+    name: "Aanantha Krishnan",
+    role: "CEO of Sri Jothi Moulding Works",
+    avatar: "https://media.licdn.com/dms/image/v2/D5603AQE4R1Z-8gfySw/profile-displayphoto-crop_800_800/B56Z.iI0i0JgAI-/0/1785131649906?e=1788393600&v=beta&t=tUs7DpQrevwW1mtt_6K_ccfnONYrrmb1Tp_AU8fi1Ac"
   },
   {
     quote: "Working with Procomets felt like having an internal team rather than an external agency. They were proactive, detail-oriented, and genuinely invested in our outcome.",
